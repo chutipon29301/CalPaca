@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.calpaca.R;
 
@@ -15,6 +17,8 @@ import com.example.calpaca.R;
 
 public class MainFragment extends Fragment {
     private static MainFragment instance;
+
+    private Button button;
 
     public static MainFragment newInstance() {
         if (instance == null) {
@@ -36,12 +40,18 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main,container,false);
-        initInstance(rootView,savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        initInstance(rootView, savedInstanceState);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    private void initInstance(View rootView, Bundle savedInstanceState) {
-
+    private void initInstance(final View rootView, Bundle savedInstanceState) {
+        button = (Button) rootView.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Button Click", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
