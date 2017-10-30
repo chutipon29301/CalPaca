@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initInstance(Bundle savedInstanceState) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentContainer, MainFragment.newInstance(),"MainFragment")
+                .add(R.id.contentContainer, MainFragment.newInstance(), "MainFragment")
                 .commit();
     }
 }

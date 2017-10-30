@@ -3,11 +3,11 @@ package com.example.calpaca.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.calpaca.R;
 
@@ -18,7 +18,7 @@ import com.example.calpaca.R;
 public class MainFragment extends Fragment {
     private static MainFragment instance;
 
-    private Button button;
+    private ViewPager viewPager;
 
     public static MainFragment newInstance() {
         if (instance == null) {
@@ -42,16 +42,40 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         initInstance(rootView, savedInstanceState);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 
     private void initInstance(final View rootView, Bundle savedInstanceState) {
-        button = (Button) rootView.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        //For Calling camera activity
+//        button = (Button) rootView.findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), "Button Click", Toast.LENGTH_SHORT).show();
+//                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(takePictureIntent, 1);
+//            }
+//        });
+
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Button Click", Toast.LENGTH_SHORT).show();
+            public Fragment getItem(int position) {
+                switch (position) {
+                    case 0:
+                        return CameraFragment.newInstance();
+                    case 1:
+                        return HistoryFragment.newInstance();
+                    default:
+                        return null;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
             }
         });
     }
+
 }
