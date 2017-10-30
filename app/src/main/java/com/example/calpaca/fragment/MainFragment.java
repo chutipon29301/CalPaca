@@ -46,17 +46,6 @@ public class MainFragment extends Fragment {
     }
 
     private void initInstance(final View rootView, Bundle savedInstanceState) {
-        //For Calling camera activity
-//        button = (Button) rootView.findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(), "Button Click", Toast.LENGTH_SHORT).show();
-//                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(takePictureIntent, 1);
-//            }
-//        });
-
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         viewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
