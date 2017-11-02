@@ -1,5 +1,6 @@
 package com.example.calpaca.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Camera;
@@ -23,9 +24,10 @@ import com.example.calpaca.R;
 public class CameraFragment extends Fragment {
 
     private static CameraFragment instance;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int PICK_IMAGE = 2;
 
-    private Button btnTakePhoto;
+    private Button btnTakePhoto, btnSelectPhoto;
     private ImageView mImageView;
 
     public static CameraFragment newInstance() {
@@ -57,6 +59,9 @@ public class CameraFragment extends Fragment {
         btnTakePhoto = (Button) rootView.findViewById(R.id.btnTakePhoto);
         btnTakePhoto.setOnClickListener(takePhotoListener);
 
+        btnSelectPhoto = (Button) rootView.findViewById(R.id.btnSelectPhoto);
+        btnSelectPhoto.setOnClickListener(selectPhotoListener);
+
         mImageView = (ImageView) rootView.findViewById(R.id.mImageView);
     }
 
@@ -70,6 +75,18 @@ public class CameraFragment extends Fragment {
         }
     };
 
+    View.OnClickListener selectPhotoListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (v == btnSelectPhoto) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        }
+    };
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("CameraDebug", "resultCode: " + resultCode);
@@ -77,6 +94,11 @@ public class CameraFragment extends Fragment {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
+        }
+        if (requestCode == PICK_IMAGE && resultCode == -1) {
+//            Bundle extras = data.getExtras();
+//            Bitmap imageBitmap = (Bitmap) extras.get("data");
+//            mImageView.setImageBitmap(imageBitmap);
         }
     }
 }
