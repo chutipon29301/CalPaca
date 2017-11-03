@@ -2,22 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shape_back"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:orientation="vertical">
 
-    <Button
+
+
+    <com.varunest.sparkbutton.SparkButton
         android:id="@+id/btnTakePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take a Photo" />
-
-    <Button
-        android:id="@+id/btnSelectPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Photo"/>
-
-    <ImageView
-        android:id="@+id/mImageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_round_button_cam"
+        app:sparkbutton_animationSpeed="1.5"
+
+
+        app:sparkbutton_activeImage="@drawable/ic_photo_camera_black_48dp"
+        app:sparkbutton_iconSize="40dp"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+        app:sparkbutton_secondaryColor="@android:color/holo_green_light">
+    </com.varunest.sparkbutton.SparkButton>
+
+
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/btnSelectPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+
+        android:background="@drawable/shape_round_button_gal"
+        android:layout_weight="1"
+        app:sparkbutton_animationSpeed="1.5"
+        app:sparkbutton_activeImage="@drawable/ic_photo_library_black_48dp"
+        app:sparkbutton_iconSize="40dp"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+
+        app:sparkbutton_secondaryColor="@android:color/holo_green_light">
+
+        </com.varunest.sparkbutton.SparkButton>
+
+        <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/btnHistory"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+        android:background="@drawable/shape_round_button_his"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        app:sparkbutton_animationSpeed="1.5"
+        app:sparkbutton_activeImage="@drawable/ic_history_black_48dp"
+        app:sparkbutton_iconSize="40dp"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+
+        app:sparkbutton_secondaryColor="@android:color/holo_green_light">
+    </com.varunest.sparkbutton.SparkButton>
 </LinearLayout>
