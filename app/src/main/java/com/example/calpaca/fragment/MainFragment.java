@@ -55,6 +55,7 @@ public class MainFragment extends Fragment {
                         return CameraFragment.newInstance();
                     case 1:
                         return HistoryFragment.newInstance();
+
                     default:
                         return null;
                 }
